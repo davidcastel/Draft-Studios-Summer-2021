@@ -1,0 +1,235 @@
+<html>
+
+<head>
+<title>Jasmine Liu</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
+
+<body>
+    <section class = "section1">
+        <h1 class="animate__animated animate__shakeY animate__duration-2s">Hello there! 👋 </h1>
+        <p class="animate__animated animate__fadeIn animate__delay-1s">(Please scroll down)</p>
+    </section>
+
+    <section class = "section2">
+        <img src="Jasmine Profile.jpg" alt="Picture of Jasmine">
+        <section class = "section2_1">
+            <h2>That's me - Jasmine Liu.</h2>
+            <p>I will be a sophomore studying CS at Temple. <br>This 2021 summer I'm interested in building<br>my dev skills & learning more about UX/UI.</p>    
+        </section>
+        
+    </section>
+
+    <section class = "section2_5">
+        <h3>Outside of school you can find me:</h3>
+    </section>
+
+    <section class = "section3">
+
+        <div class="mySlides">
+            <img src="JasmineHammock.jpg" width="20%" height="auto">
+            <p>Chilling in my hammock 🏖</p>
+          </div>
+        
+          <div class="mySlides">
+            <img src="JasmineChicken.jpeg" width="20%" height="auto">
+            <p> Hanging with my chickens 🐤</p>
+          </div>
+        
+          <div class="mySlides">
+            <img src="JasmineCalligraphy.jpg" width="20%" height="auto">
+            <p>Working on calligraphy 🎨</p>
+          </div>
+
+          <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+          <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+    </section>
+
+    <div class="dot-container">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
+
+</body>
+</html>
+
+
+<script>
+    const faders = document.querySelectorAll(".section2");
+
+    const appearOptions = {
+        threshold: 0,
+        rootMargin: "0px 0px -250px 0px"
+    };
+
+    const appearOnScroll = new IntersectionObserver(function(entries,appearOnScroll) {
+    entries.forEach(entry => {
+        if (!entry.isIntersecting) {
+            return;
+            } else {
+                entry.target.classList.add("appear");
+                appearOnScroll.unobserve(entry.target);
+            }
+        });
+    },
+    appearOptions);
+
+    faders.forEach(fader => {
+    appearOnScroll.observe(fader);
+    });
+
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+            }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+    }
+
+</script>
+
+
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Mansalva&family=Nanum+Pen+Script&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap");
+
+    body {
+        background-color: rgb(246, 240, 223);
+    }
+
+    .section1 h1 {
+        font-size: 20vh; 
+        /* 20% of viewport */
+        text-align: center;
+        margin-top: 35vh;
+        font-family: 'Nanum Pen Script';
+    }
+
+    .section1 p {
+        font-size: 2vw;
+        text-align: center;
+        margin-top: 50vh;
+        transform: translate(0, -350px)
+        /* font-family: 'Mansalva'; */
+    }
+
+    .section2 {
+        background-color: rgb(237, 225, 204);
+        border-radius: 30px;
+        margin: 5vw;
+        display: flex;
+        opacity: 0;
+        transition: opacity 250ms ease-in;
+    }
+
+    .section2 img { 
+        padding: 5vw;
+        border-radius: 50%;
+        width: 20vw;
+        height: auto;
+    }
+
+    .section2 h2 { 
+        font-size: 10vh;
+        text-align: center;
+        font-family: 'Nanum Pen Script';
+        padding: 1vw;
+    }
+
+    .section2 p{
+        text-align: center;
+        font-size: 2vw;
+    }
+
+    .section2.appear {
+        opacity: 1;
+    }
+
+    .section2_5 {
+        background-color: rgb(237, 225, 204);
+        margin: 50vh 0vw 50vh 0vw;
+        padding: 10vh;
+        font-size: 10vh;
+        text-align: center;
+        font-family: 'Nanum Pen Script';
+    }
+
+    .section3 {
+        background-color: rgb(237, 225, 204);
+        margin: 50vh 5vw 0vh 5vw;
+        border-radius: 30px;
+        display: flex;
+        text-align: center;
+        font-size: 7vh;
+        font-family: 'Nanum Pen Script';
+    }
+
+    .section3 img { 
+        margin-top: 5vw;
+        border-radius: 10%;
+    }
+
+    .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        font-size: 5vh;
+        margin-top: 35vh;
+        padding: 3vw;
+        border-radius: 40%;
+    }
+
+    .prev:hover, .next:hover {
+        background-color: rgba(230, 206, 157, 0.8);
+        color: black;
+    }
+
+    .next {
+        right: 10vw;
+    }
+
+    .prev {
+        left: 10vw;
+    }
+
+    .dot {
+        cursor: pointer;
+        height: 3vh;
+        width: 3vh;
+        background-color: rgb(237, 225, 204);
+        margin: 0 1vw;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.6s ease;
+    }
+
+    .dot-container {
+        text-align: center;
+        padding: 3vw;
+    }
+
+    .active, .dot:hover {
+        background-color: black;
+    }
+
+</style>
