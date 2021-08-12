@@ -1,3 +1,4 @@
+<section class="container">
     <section class = "section1">
         <h1 class="animate__animated animate__shakeY animate__duration-2s">Hello there! 👋 </h1>
         <p class="animate__animated animate__fadeIn animate__delay-1s">(Please scroll down)</p>
@@ -35,7 +36,6 @@
 
           <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
           <a class="next" onclick="plusSlides(1)">&#10095;</a>
-        </div>
     </section>
 
     <div class="dot-container">
@@ -43,32 +43,9 @@
         <span class="dot" onclick="currentSlide(2)"></span>
         <span class="dot" onclick="currentSlide(3)"></span>
     </div>
-
+</section>
 
 <script>
-    const faders = document.querySelectorAll(".section2");
-
-    const appearOptions = {
-        threshold: 0,
-        rootMargin: "0px 0px -250px 0px"
-    };
-
-    const appearOnScroll = new IntersectionObserver(function(entries,appearOnScroll) {
-    entries.forEach(entry => {
-        if (!entry.isIntersecting) {
-            return;
-            } else {
-                entry.target.classList.add("appear");
-                appearOnScroll.unobserve(entry.target);
-            }
-        });
-    },
-    appearOptions);
-
-    faders.forEach(fader => {
-    appearOnScroll.observe(fader);
-    });
-
     var slideIndex = 1;
     showSlides(slideIndex);
 
@@ -95,9 +72,7 @@
         slides[slideIndex-1].style.display = "block";
         dots[slideIndex-1].className += " active";
     }
-
 </script>
-
 
 <style>
     @import url("https://fonts.googleapis.com/css2?family=Mansalva&family=Nanum+Pen+Script&display=swap");
